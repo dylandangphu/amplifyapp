@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { API } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
-import { API, Storage } from 'aws-amplify';
+
 
 
 const initialFormState = { name: '', description: '' }
@@ -81,11 +81,11 @@ function App() {
         placeholder="Note description"
         value={formData.description}
       />
+      <button onClick={createNote}>Create Note</button>
       <input
         type="file"
         onChange={onChange}
       />
-      <button onClick={createNote}>Create Note</button>
       <div style={{marginBottom: 30}}>
         {
           notes.map(note => (
